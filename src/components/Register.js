@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, ImageBackground, Dimensions, TextInput, Text, Image } from 'react-native';
+import { View, ImageBackground, Dimensions, TextInput, Text, Image, TouchableOpacity } from 'react-native';
 
 import Button from '../common/Button';
 import Header from '../common/Header';
@@ -7,8 +7,6 @@ import Header from '../common/Header';
 const { width, height } = Dimensions.get('window');
 
 class Register extends Component {
-    state = { sehir: '', email: '', isim: '', soyisim: '', parola: '', parolatkr: '' }
-
     renderTextInput(placeholder, onChangeText){
         return(
             <View>
@@ -22,10 +20,12 @@ class Register extends Component {
             </View> 
         )
     }
+
     render() {
         return (
             <View style={{flex: 1}}>
-                <Header />        
+                <Header />
+                      
                 <ImageBackground
                 source={require('../img/backgroundImg.png')}
                 style={{ width, height: height * 0.87, opacity: 0.95 }}>
