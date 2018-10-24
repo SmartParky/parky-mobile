@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { View, ImageBackground, Dimensions, TextInput, Text, Image, TouchableOpacity } from 'react-native';
 
 import Button from '../common/Button';
-import Header from '../common/Header';
 
 const { width, height } = Dimensions.get('window');
 
@@ -23,12 +22,11 @@ class Register extends Component {
 
     render() {
         return (
-            <View style={{flex: 1}}>
-                <Header />
+            <View style={{flex: 1}}>              
                       
                 <ImageBackground
                 source={require('../img/backgroundImg.png')}
-                style={{ width, height: height * 0.87, opacity: 0.95 }}>
+                style={{ width, height, opacity: 0.95 }}>
 
                     <View style= {styles.section}>       
                         <Text style={styles.txtKyt}>Kayıt</Text>

@@ -1,5 +1,6 @@
 import React, { Component }  from 'react';
 import { ImageBackground, Dimensions, Image, View } from 'react-native';
+import { Actions } from 'react-native-router-flux';
 
 import Button from '../common/Button';
 
@@ -15,15 +16,14 @@ class Opening extends Component {
             >
                 <Image source={require('../img/logo.png')}
                     style={{ width: width * 0.51, height: height * 0.29 }} />
-                <View style={{ marginTop: height*0.10,height: height*0.17, justifyContent:'space-between'}}>
-                    <Button>Giriş Yap</Button>
-                    <Button>Kayıt Ol</Button>
+                <View style={{ marginTop: height*0.10, height: height*0.17, justifyContent:'space-between'}}>
+                    <Button onPress={() => { Actions.loginScreen() }}>Giriş Yap</Button>
+                    <Button onPress={() => { Actions.registerScreen() }}>Kayıt Ol</Button>
                 </View>
                 
             </ImageBackground>
         );
     }
 }
-
 
 export default Opening;
