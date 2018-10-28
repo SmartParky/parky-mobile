@@ -25,8 +25,8 @@ const styles = {
   },
 
   textStyle: {
-    width: 64,
-    height: 27,
+    //width: 64,
+    //height: 27,
     fontFamily: "Calibri",
     fontSize: 16,
     fontWeight: "bold",

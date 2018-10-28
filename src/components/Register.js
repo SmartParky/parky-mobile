@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, ImageBackground, Dimensions, TextInput, Text, Image } from 'react-native';
+import { View, ImageBackground, Dimensions, TextInput, Text, Image, TouchableOpacity } from 'react-native';
 
 import Button from '../common/Button';
 import Header from '../common/Header';
@@ -7,8 +7,6 @@ import Header from '../common/Header';
 const { width, height } = Dimensions.get('window');
 
 class Register extends Component {
-    state = { sehir: '', email: '', isim: '', soyisim: '', parola: '', parolatkr: '' }
-
     renderTextInput(placeholder, onChangeText){
         return(
             <View>
@@ -19,18 +17,19 @@ class Register extends Component {
                     underlineColorAndroid={'#f8e71c'}
                     onChangeText={ onChangeText }
                 />
-            </View> 
+            </View>
         )
     }
+
     render() {
         return (
             <View style={{flex: 1}}>
-                <Header />        
+
                 <ImageBackground
                 source={require('../img/backgroundImg.png')}
                 style={{ width, height: height * 0.87, opacity: 0.95 }}>
 
-                    <View style= {styles.section}>       
+                    <View style= {styles.section}>
                         <Text style={styles.txtKyt}>Kayıt</Text>
                         <Text style={styles.txtOl}>ol!</Text>
                     </View>
@@ -50,7 +49,7 @@ class Register extends Component {
                             parolatkr => console.log({ parolatkr }))}
 
                     </View>
-                    
+
                     <View style={{ paddingHorizontal: 180, paddingTop: 100, flex: 1 }}>
                         <Button>Kayıt Ol</Button>
                     </View>
@@ -87,10 +86,10 @@ const styles = {
         letterSpacing: 0,
         textAlign: "right",
         color: "#f8e71c",
-        flex: 2, 
+        flex: 2,
     },
-    txtOl:{ 
-        flex: 1, 
+    txtOl:{
+        flex: 1,
         textAlign: 'center',
         width: width*0.10,
         height: height*0.05,
