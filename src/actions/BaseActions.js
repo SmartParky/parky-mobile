@@ -3,7 +3,7 @@ import { AsyncStorage } from 'react-native';
 const request = require("superagent");
 
 // Api
-const url = 'http://127.0.0.1:8000';
+const url = "http://10.0.3.2:8000";
 const api_url = url + "/v1";
 const api_auth_login_url = url + "/auth/login/";
 const api_users_url = api_url + "/users/";

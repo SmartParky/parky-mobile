@@ -15,22 +15,21 @@ const RouterComponent = () => {
                 hideNavBar="true"
                 />
             </Scene>
-            
-            <Scene
-                navigationBarStyle={{ height: 85}}
-                sceneStyle={{ marginTop: 85 }}
-                key="registerScreen" component={Register}
-                renderTitle={() => (
-                    <Header />
-                )} />
-            
-            <Scene
-                navigationBarStyle={{ height: 85 }}
-                sceneStyle={{ marginTop: 85 }}
-                key="loginScreen" component={LoginForm}
-                renderTitle={() => (
-                    <Header />
-                )} />
+
+                <Scene
+                    navigationBarStyle={{ height: 85 }}
+                    sceneStyle={{ marginTop: 85 }}
+                    key="registerScreen" component={Register}
+                    renderTitle={() => (
+                        <Header />
+                    )} />
+                <Scene
+                    navigationBarStyle={{ height: 85 }}
+                    sceneStyle={{ marginTop: 85 }}
+                    key="loginScreen" component={LoginForm}
+                    renderTitle={() => (
+                        <Header />
+                    )} />
         </Router>
     );
 };

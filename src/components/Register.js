@@ -1,23 +1,30 @@
 import React, { Component } from 'react';
-import { View, ImageBackground, Dimensions, TextInput, Text, Image, TouchableOpacity } from 'react-native';
+import { View, ImageBackground, Dimensions, TextInput, Text } from 'react-native';
+import { connect } from 'react-redux';
 
 import Button from '../common/Button';
+import { registerInputChange, createUser } from '../actions';
 
 const { width, height } = Dimensions.get('window');
 
 class Register extends Component {
-    renderTextInput(placeholder, onChangeText){
+    renderTextInput(placeholder, onChangeText, value ){
         return(
             <View>
                 <TextInput
                     placeholder={placeholder}
                     placeholderTextColor={'#cccccc'}
                     style={styles.TextInput}
+                    value={ value }
                     underlineColorAndroid={'#f8e71c'}
                     onChangeText={ onChangeText }
                 />
             </View> 
         )
+    }
+    clickSingUp() {
+        const { sehir, email, isim, soyisim, telNo, parola, parolatkr } = this.props;
+        this.props.createUser({ sehir, email, isim, soyisim, telNo, parola, parolatkr });
     }
 
     render() {
@@ -35,22 +42,30 @@ class Register extends Component {
 
                     <View style={{ paddingHorizontal: 150, paddingTop: 30, flex: 1 }}>
                         {this.renderTextInput('Şehir',
-                            sehir => console.log({ sehir }))}
+                            sehir => this.props.registerInputChange({ props: 'sehir', value: sehir }),
+                            this.props.sehir )}
                         {this.renderTextInput('E-mail',
-                            email => console.log({ email }))}
+                            email => this.props.registerInputChange({ props: 'email', value: email }),
+                            this.props.email )}
                         {this.renderTextInput('İsim',
-                            isim => console.log({ isim }))}
+                            isim => this.props.registerInputChange({ props: 'isim', value: isim }),
+                            this.props.isim )}
                         {this.renderTextInput('Soyisim',
-                            soyisim => console.log({ soyisim }))}
+                            soyisim => this.props.registerInputChange({ props: 'soyisim', value: soyisim }),
+                            this.props.soyisim )}
+                        {this.renderTextInput('Telefon Numarası',
+                            telNo => this.props.registerInputChange({ props: 'telNo', value: telNo }),
+                            this.props.telNo)}
                         {this.renderTextInput('Parola',
-                            parola => console.log({ parola }))}
+                            parola => this.props.registerInputChange({ props: 'parola', value: parola }),
+                            this.props.parola )}
                         {this.renderTextInput('Parola tekrar',
-                            parolatkr => console.log({ parolatkr }))}
-
+                            parolatkr => this.props.registerInputChange({ props: 'parolatkr', value: parolatkr }),
+                            this.props.parolatkr )}
                     </View>
                     
                     <View style={{ paddingHorizontal: 180, paddingTop: 100, flex: 1 }}>
-                        <Button>Kayıt Ol</Button>
+                        <Button onPress={this.clickSingUp.bind(this)}>Kayıt Ol</Button>
                     </View>
 
                 </ImageBackground>
@@ -103,4 +118,24 @@ const styles = {
     }
 };
 
-export default Register;
+const mapToStateProps = ({ registerResponse }) => {
+    const { sehir,
+            email,
+            isim,
+            soyisim,
+            telNo,
+            parola,
+            parolatkr } = registerResponse;
+
+    return {
+        sehir,
+        email,
+        isim,
+        soyisim,
+        telNo,
+        parola,
+        parolatkr
+    };
+}
+
+export default connect(mapToStateProps, { registerInputChange, createUser })(Register);
