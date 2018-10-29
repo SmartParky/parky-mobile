@@ -1,9 +1,12 @@
+import { Alert } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
-import { REGISTER_INPUT_CHANGE, REGISTER_USER_REQUEST } from './types';
+import { REGISTER_INPUT_CHANGE, REGISTER_USER_REQUEST, CITY_LIST_SUCCESS } from './types';
 import {
     request,
-    api_users_url } from './BaseActions';
+    api_users_url,
+    api_cities_url,
+    HTTP_200_OK } from './BaseActions';
 
 export const registerInputChange = ({ props, value }) => {
     return (dispatch) => {
@@ -14,8 +17,7 @@ export const registerInputChange = ({ props, value }) => {
     };
 };
 
-export const createUser = ({ sehir, email, isim, soyisim, telNo, parola, parolatkr }) => {
-    
+export const createUser = ({ sehir, email, isim, soyisim, telNo, parola, parolatkr }) => {   
       data = {
           city: sehir,
           email: email,
@@ -37,4 +39,20 @@ export const createUser = ({ sehir, email, isim, soyisim, telNo, parola, parolat
         .catch((err) => console.log(err))
         console.log(data)
     };    
+}
+
+export const ListCity = () => {
+    return (dispatch) => {
+    request
+        .get(api_cities_url)
+        .type("application/json")
+        .accept("application/json")
+        .end((error, response) => {
+            if (error || response.statusCode !== HTTP_200_OK) {
+                Alert.alert('An unexpected error has occurred and try again later.');
+            } else { 
+                dispatch({ type: CITY_LIST_SUCCESS, payload: response.body })              
+            }           
+        });  
+    }  
 }

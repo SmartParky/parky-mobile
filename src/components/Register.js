@@ -1,13 +1,17 @@
+import _ from 'lodash';
 import React, { Component } from 'react';
-import { View, ImageBackground, Dimensions, TextInput, Text } from 'react-native';
+import { View, ImageBackground, Dimensions, TextInput, Text, Picker } from 'react-native';
 import { connect } from 'react-redux';
 
 import Button from '../common/Button';
-import { registerInputChange, createUser } from '../actions';
+import { registerInputChange, createUser, ListCity } from '../actions';
 
 const { width, height } = Dimensions.get('window');
 
-class Register extends Component {
+class Register extends Component { 
+    componentWillMount() {
+        this.props.ListCity();  
+    }
     renderTextInput(placeholder, onChangeText, value ){
         return(
             <View>
@@ -27,10 +31,9 @@ class Register extends Component {
         this.props.createUser({ sehir, email, isim, soyisim, telNo, parola, parolatkr });
     }
 
-    render() {
-        return (
+    render() {   
+        return (          
             <View style={{flex: 1}}>              
-                      
                 <ImageBackground
                 source={require('../img/backgroundImg.png')}
                 style={{ width, height, opacity: 0.95 }}>
@@ -39,11 +42,21 @@ class Register extends Component {
                         <Text style={styles.txtKyt}>Kayıt</Text>
                         <Text style={styles.txtOl}>ol!</Text>
                     </View>
+ 
+                    <View style={{ paddingHorizontal: 128, paddingTop: 20, flex: 1 }}>       
+                        <View style={ styles.PickerView }>
+                            <Picker
+                                style={ styles.Picker }
+                                selectedValue={this.props.sehir}
+                                onValueChange={sehir => this.props.registerInputChange({ props: 'sehir', value: sehir })}
+                            >
+                                {_.map(this.props.cities, city =>
+                                    <Picker.Item key={city.id} label={city.city} value={city.id} />
+                                )}
 
-                    <View style={{ paddingHorizontal: 150, paddingTop: 30, flex: 1 }}>
-                        {this.renderTextInput('Şehir',
-                            sehir => this.props.registerInputChange({ props: 'sehir', value: sehir }),
-                            this.props.sehir )}
+                            </Picker>
+                        </View>  
+
                         {this.renderTextInput('E-mail',
                             email => this.props.registerInputChange({ props: 'email', value: email }),
                             this.props.email )}
@@ -64,7 +77,7 @@ class Register extends Component {
                             this.props.parolatkr )}
                     </View>
                     
-                    <View style={{ paddingHorizontal: 180, paddingTop: 100, flex: 1 }}>
+                    <View style={{ paddingHorizontal: 145, paddingTop: 120, flex: 1 }}>
                         <Button onPress={this.clickSingUp.bind(this)}>Kayıt Ol</Button>
                     </View>
 
@@ -114,18 +127,32 @@ const styles = {
         lineHeight: 36,
         letterSpacing: 0,
         color: "#ffffff"
-
+    },
+    PickerView: { 
+        width: width * 0.65, 
+        borderBottomWidth: 1, 
+        borderBottomColor: '#f8e71c', 
+        alignItems: 'center', 
+        justifyContent: 'center' 
+    },
+    Picker: { 
+        marginLeft: 35, 
+        color: '#cccccc',
+        width: width * 0.28 
     }
 };
 
 const mapToStateProps = ({ registerResponse }) => {
-    const { sehir,
-            email,
-            isim,
-            soyisim,
-            telNo,
-            parola,
-            parolatkr } = registerResponse;
+    const { 
+        sehir,
+        email,
+        isim,
+        soyisim,
+        telNo,
+        parola,
+        parolatkr,
+        cities
+    } = registerResponse;
 
     return {
         sehir,
@@ -134,8 +161,9 @@ const mapToStateProps = ({ registerResponse }) => {
         soyisim,
         telNo,
         parola,
-        parolatkr
+        parolatkr,
+        cities
     };
 }
 
-export default connect(mapToStateProps, { registerInputChange, createUser })(Register);
+export default connect(mapToStateProps, { registerInputChange, createUser, ListCity })(Register);

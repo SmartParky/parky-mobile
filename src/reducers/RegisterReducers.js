@@ -1,4 +1,4 @@
-import { REGISTER_INPUT_CHANGE, REGISTER_USER_REQUEST } from '../actions/types';
+import { REGISTER_INPUT_CHANGE, REGISTER_USER_REQUEST, CITY_LIST_SUCCESS } from '../actions/types';
 
 const INITIAL_STATE = {
     city: '',
@@ -7,7 +7,8 @@ const INITIAL_STATE = {
     last_name: '',
     phone_number: '',
     password: '',
-    confirm_password: ''
+    confirm_password: '',
+    cities: ''
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -16,6 +17,8 @@ export default (state = INITIAL_STATE, action) => {
             return { ...state, [action.payload.props]: action.payload.value };
         case REGISTER_USER_REQUEST:
             return { ...state }
+        case CITY_LIST_SUCCESS:
+            return { ...state, cities: action.payload};    
         default:
             return state;
     }
