@@ -1,7 +1,6 @@
-//import React from 'react';
 import { Actions } from 'react-native-router-flux';
 
-import { LOGIN_INPUT_CHANGE, LOGIN_USER_REQUEST } from './types';
+import { LOGIN_INPUT_CHANGE, LOGIN_USER_REQUEST, SAVE_USER_INFORMATION } from './types';
 import { request,
         api_auth_login_url } from './BaseActions';
 
@@ -15,7 +14,7 @@ export const loginInputChange = ({ props, value }) => {
 };
 
 export const loginUser = ({ email, password }) => {
-    return (dispatch) => {
+    return (dispatch) => {        
         dispatch({ type: LOGIN_USER_REQUEST });
         data = {
             password: password,
@@ -26,9 +25,15 @@ export const loginUser = ({ email, password }) => {
         .type("application/json")
         .accept("application/json")
         .send(data)
-        .then((res) => console.log(res),
-         Actions.opening())
-            .catch((err) => console.log(err))
-             console.log(data)
+        .then((res) => setAuthInformations( dispatch, res.body.auth_token, res.body.user_id),
+        Actions.carCreateScrn())
+        .catch((err) => console.log(err))           
     };  
+};
+
+export const setAuthInformations = (dispatch, auth_token, user_id ) => {
+        dispatch({
+            type: SAVE_USER_INFORMATION,
+            payload: { auth_token, user_id }
+        });
 };

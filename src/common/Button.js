@@ -16,11 +16,9 @@ const styles = {
     height: 40,
     marginTop: 10,
     padding: 5,
-    opacity: 0.85,
     borderRadius: 60,
     backgroundColor: "#f8e71c",
     borderStyle: "solid",
-    borderWidth: 1,
     borderColor: "#707070"
   },
 

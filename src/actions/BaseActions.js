@@ -1,7 +1,5 @@
 import { AsyncStorage } from 'react-native';
-// Packages
 const request = require("superagent");
-
 // Api
 const url = "http://10.0.3.2:8000";
 const api_url = url + "/v1";
@@ -20,22 +18,12 @@ const HTTP_204_NO_CONTENT = 204;
 const HTTP_400_BAD_REQUEST = 400;
 
 
-async function getAuthInformations() {
+async function getAuthInformations  () {
     var auth_informations = {
         "auth_token": await AsyncStorage.getItem("auth_token"),
         "user_id": await AsyncStorage.getItem("user_id")
-    }
+    }   
     return auth_informations
-};
-
-async function setAuthInformations ( auth_token, user_id ) {
-    if (auth_token && user_id) {
-        AsyncStorage.setItem('auth_token', auth_token);
-        AsyncStorage.setItem('user_id', JSON.stringify(user_id));
-        return true;
-    } else {
-        return false;
-    }
 };
 
 module.exports = {
@@ -54,5 +42,4 @@ module.exports = {
     HTTP_204_NO_CONTENT,
     HTTP_400_BAD_REQUEST,
     getAuthInformations,
-    setAuthInformations
 }

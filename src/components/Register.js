@@ -18,7 +18,7 @@ class Register extends Component {
                 <TextInput
                     placeholder={placeholder}
                     placeholderTextColor={'#cccccc'}
-                    style={styles.TextInput}
+                    style={styles.textInput}
                     value={ value }
                     underlineColorAndroid={'#f8e71c'}
                     onChangeText={ onChangeText }
@@ -53,7 +53,6 @@ class Register extends Component {
                                 {_.map(this.props.cities, city =>
                                     <Picker.Item key={city.id} label={city.city} value={city.id} />
                                 )}
-
                             </Picker>
                         </View>  
 
@@ -88,7 +87,7 @@ class Register extends Component {
 }
 
 const styles = {
-    TextInput:{
+    textInput:{
         width: width*0.65,
         textAlign: 'center',
         fontSize: 20,
