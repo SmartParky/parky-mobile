@@ -16,7 +16,7 @@ class Opening extends Component {
             >
                 <Image source={require('../img/logo.png')}
                     style={{ width: width * 0.51, height: height * 0.29 }} />
-                <View style={{ marginTop: height*0.10,height: height*0.17, justifyContent:'space-between'}}>
+                <View style={{ marginTop: height*0.10, height: height*0.17, justifyContent:'space-between'}}>
                     <Button onPress={() => { Actions.loginScreen() }}>Giriş Yap</Button>
                     <Button onPress={() => { Actions.registerScreen() }}>Kayıt Ol</Button>
                 </View>
@@ -25,6 +25,5 @@ class Opening extends Component {
         );
     }
 }
-
 
 export default Opening;

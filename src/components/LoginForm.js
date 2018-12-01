@@ -15,13 +15,13 @@ import { loginInputChange, loginUser } from '../actions';
 const { width, height } = Dimensions.get('window');
 
 class LoginForm extends Component {
-
+  
   clickLogin() {
     const { email, password } = this.props;
     this.props.loginUser({ email, password });
   }
-  render() {
 
+  render() {
     return (
       <View style={{flex: 1}}>
         <ImageBackground
@@ -52,6 +52,7 @@ class LoginForm extends Component {
               underlineColorAndroid={'#f8e71c'}
             />
           </View>
+
           <View style={{ paddingHorizontal: 180, paddingBottom: 200, flex: 1 }}>
             <Button onPress={this.clickLogin.bind(this)}> Sign In </Button>
           </View>

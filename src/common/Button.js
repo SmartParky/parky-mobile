@@ -16,7 +16,6 @@ const styles = {
     height: 40,
     marginTop: 10,
     padding: 5,
-    opacity: 0.85,
     borderRadius: 60,
     backgroundColor: "#f8e71c",
     borderStyle: "solid",
@@ -25,8 +24,6 @@ const styles = {
   },
 
   textStyle: {
-    //width: 64,
-    //height: 27,
     fontFamily: "Calibri",
     fontSize: 16,
     fontWeight: "bold",
