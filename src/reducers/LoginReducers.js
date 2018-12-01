@@ -23,7 +23,7 @@ export default (state = INITIAL_STATE, action) => {
                 ...state,
                 auth_token: action.payload.auth_token || state.auth_token,
                 user_id: action.payload.user_id || state.user
-            }
+            }         
         default:
            return state;
     }

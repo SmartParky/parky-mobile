@@ -10,3 +10,4 @@ export const CAR_CREATE_REQUEST = 'car_create_request';
 
 export const SAVE_USER_INFORMATION = 'user_save_informations';
 
+export const UPDATE_USER_REQUEST = 'update_user_request';

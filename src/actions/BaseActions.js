@@ -19,12 +19,30 @@ const HTTP_400_BAD_REQUEST = 400;
 
 
 async function getAuthInformations  () {
-    var auth_informations = {
+    const auth_informations = {
         "auth_token": await AsyncStorage.getItem("auth_token"),
         "user_id": await AsyncStorage.getItem("user_id")
     }   
     return auth_informations
 };
+
+async function retrieveUser(onComplete) {
+    const auth_informations = await getAuthInformations();
+
+    const req = request
+        .get(api_users_url + auth_informations.user_id + '/')
+        .set("Authorization", "token " + auth_informations.auth_token)
+        .type("application/json")
+        .accept("application/json");
+
+    req.end((err, res) => {
+        if (err || res.statusCode !== HTTP_200_OK) {
+            Alert.alert("An unexpected error has occurred and try again later.");
+        } else {
+            onComplete(res.body);
+        }
+    });
+}
 
 module.exports = {
     request,
@@ -42,4 +60,5 @@ module.exports = {
     HTTP_204_NO_CONTENT,
     HTTP_400_BAD_REQUEST,
     getAuthInformations,
+    retrieveUser
 }

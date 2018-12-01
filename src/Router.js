@@ -5,6 +5,7 @@ import LoginForm from './components/LoginForm';
 import Register from './components/Register';
 import Opening from './components/Opening';
 import CarCreate from './components/CarCreate';
+import Profil from './components/Profil';
 import Header from './common/Header';
 
 const RouterComponent = () => {
@@ -35,6 +36,13 @@ const RouterComponent = () => {
                 navigationBarStyle={{ height: 85 }}
                 sceneStyle={{ marginTop: 85 }}
                 key="carCreateScrn" component={CarCreate}
+                renderTitle={() => (
+                    <Header />
+                )} />
+            <Scene
+                navigationBarStyle={{ height: 85 }}
+                sceneStyle={{ marginTop: 85 }}
+                key="ProfilScrn" component={Profil}
                 renderTitle={() => (
                     <Header />
                 )} />
