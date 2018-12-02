@@ -6,6 +6,7 @@ import Register from './components/Register';
 import Opening from './components/Opening';
 import CarCreate from './components/CarCreate';
 import Profil from './components/Profil';
+import CreateRezervation from './components/CreateRezervation';
 import Header from './common/Header';
 
 const RouterComponent = () => {
@@ -46,6 +47,15 @@ const RouterComponent = () => {
                 renderTitle={() => (
                     <Header />
                 )} />
+
+            <Scene
+                navigationBarStyle={{ height: 85 }}
+                sceneStyle={{ marginTop: 85 }}
+                key="rezervationCreatePage" component={CreateRezervation}
+                renderTitle={() => (
+                    <Header />
+                )}
+            />
         </Router>
     );
 };

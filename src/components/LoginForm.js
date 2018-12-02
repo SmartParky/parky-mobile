@@ -132,8 +132,8 @@ const mapToStateProps = ({ loginResponse }) => {
   const { email, password } = loginResponse;
 
   return {
-    email,
-    password
+    email: 'beyzaaksoy@gmail.com',
+    password: '1'
   };
 }
 

@@ -3,10 +3,12 @@ import LoginReducers from './LoginReducers';
 import RegisterReducers from './RegisterReducers';
 import CarReducers from './CarReducers';
 import UpdateInfoReducers from './UpdateInfoReducers';
+import RezervationReducers from './RezervationReducers';
 
 export default combineReducers({
     loginResponse: LoginReducers,
     registerResponse: RegisterReducers,
     carResponse: CarReducers,
-    updateInfoResponse: UpdateInfoReducers
+    updateInfoResponse: UpdateInfoReducers,
+    rezervationResponse: RezervationReducers
 })
