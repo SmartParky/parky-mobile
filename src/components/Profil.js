@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import Button from '../common/Button';
 import { userUpdate } from '../actions';
 import { retrieveUser } from '../actions/BaseActions'
+import { Actions } from 'react-native-router-flux';
 
 const { width, height } = Dimensions.get('window');
 
@@ -76,7 +77,7 @@ class Profil extends Component {
                         this.state.telno)}
                     <View style={{ marginTop: 25 }}>
                         <Button onPress={this.clickUpate.bind(this)}>Güncelle</Button>
-                        <Button>Araç Ekle</Button>
+                        <Button onPress={() => Actions.carCreateScrn()}>Araç Ekle</Button>
                     </View>
                 </View>
             </View>
