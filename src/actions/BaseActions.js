@@ -22,7 +22,7 @@ async function getAuthInformations  () {
     const auth_informations = {
         "auth_token": await AsyncStorage.getItem("auth_token"),
         "user_id": await AsyncStorage.getItem("user_id")
-    }   
+    }
     return auth_informations
 };
 

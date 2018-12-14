@@ -7,13 +7,14 @@ import Opening from './components/Opening';
 import CarCreate from './components/CarCreate';
 import Profil from './components/Profil';
 import CreateRezervation from './components/CreateRezervation';
+import PastRezervation from './components/PastRezervation';
 import Header from './common/Header';
 
 const RouterComponent = () => {
     return (
         <Router>
             <Scene key="opening">
-            <Scene 
+            <Scene
                 key="openingScreen" component={Opening}
                 hideNavBar="true"
                 />
@@ -52,6 +53,14 @@ const RouterComponent = () => {
                 navigationBarStyle={{ height: 85 }}
                 sceneStyle={{ marginTop: 85 }}
                 key="rezervationCreatePage" component={CreateRezervation}
+                renderTitle={() => (
+                    <Header />
+                )}
+            />
+            <Scene
+                navigationBarStyle={{ height: 85 }}
+                sceneStyle={{ marginTop: 85 }}
+                key="rezervationPastPage" component={PastRezervation}
                 renderTitle={() => (
                     <Header />
                 )}

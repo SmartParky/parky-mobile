@@ -16,7 +16,7 @@ class Profil extends Component {
         soyisim: '',
         telno: ''
     }
-    componentWillMount() {     
+    componentWillMount() {
         retrieveUser((body) => {
             this.setState({
                 email: body.email,

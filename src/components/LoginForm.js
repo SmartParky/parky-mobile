@@ -14,12 +14,12 @@ import { loginInputChange, loginUser } from '../actions';
 const { width, height } = Dimensions.get('window');
 
 class LoginForm extends Component {
-  
+
   clickLogin() {
     const { email, password } = this.props;
     this.props.loginUser({ email, password });
   }
-  
+
   render() {
     return (
       <View style={{flex: 1}}>
@@ -51,7 +51,7 @@ class LoginForm extends Component {
               underlineColorAndroid={'#f8e71c'}
             />
           </View>
-          
+
           <View style={{ paddingHorizontal: 180, paddingBottom: 200, flex: 1 }}>
             <Button onPress={this.clickLogin.bind(this)}> Sign In </Button>
           </View>
@@ -67,7 +67,7 @@ class LoginForm extends Component {
 }
 const styles = {
     backgroundStyle:{
-        width, 
+        width,
         height: height * 0.87,
         opacity: 0.95,
     },
@@ -132,7 +132,7 @@ const mapToStateProps = ({ loginResponse }) => {
   const { email, password } = loginResponse;
 
   return {
-    email: 'beyzaaksoy@gmail.com',
+    email: 'betul@gmail.com',
     password: '1'
   };
 }

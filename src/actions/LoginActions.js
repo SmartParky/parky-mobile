@@ -14,21 +14,21 @@ export const loginInputChange = ({ props, value }) => {
 };
 
 export const loginUser = ({ email, password }) => {
-    return (dispatch) => {        
+    return (dispatch) => {
         dispatch({ type: LOGIN_USER_REQUEST });
         data = {
             password: password,
             email: email
-        }; 
+        };
        request
         .post(api_auth_login_url)
         .type("application/json")
         .accept("application/json")
         .send(data)
         .then((res) => setAuthInformations( dispatch, res.body.auth_token, res.body.user_id),
-           Actions.rezervationCreatePage())
-        .catch((err) => console.log(err))           
-    };  
+           Actions.rezervationPastPage())
+        .catch((err) => console.log(err))
+    };
 };
 
 export const setAuthInformations = (dispatch, auth_token, user_id ) => {
