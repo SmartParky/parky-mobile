@@ -5,6 +5,7 @@ import { View,
          TouchableOpacity, 
          Image, 
          AsyncStorage } from 'react-native';
+import RNRestart from 'react-native-restart';
 
 import { retrieveUser } from '../actions/BaseActions'
 import { Actions } from 'react-native-router-flux';
@@ -24,11 +25,11 @@ class Menu extends Component {
             });
         });
     }
-
     logOut = () => {
         AsyncStorage.clear();
+        RNRestart.Restart();
     }
-    
+
     renderSection(sourceImage, text, onPress) {
         return(
             <TouchableOpacity 
@@ -46,7 +47,7 @@ class Menu extends Component {
             </TouchableOpacity>
         );
     }
-    render() {
+    render() {   
         return (
             <View style={styles.container}>
                 <View style={styles.element}>
@@ -54,7 +55,7 @@ class Menu extends Component {
                         <Text style={styles.txt}>{this.state.user.first_name} {this.state.user.last_name}</Text>
                     </View>
 
-                    {this.renderSection(require('../img/hmpgicon.png'), 'Anasayfa')}
+                    {this.renderSection(require('../img/hmpgicon.png'), 'Anasayfa', () => Actions.rezervationCreatePage())}
                     {this.renderSection(require('../img/prflicon.png'), 'Profil', () => Actions.ProfilScrn())}
                     {this.renderSection(require('../img/rezicon.png'), 'Rezervasyonlarım')}
                     {this.renderSection(require('../img/caricon.png'), 'Araç Bilgileri')}
@@ -62,7 +63,7 @@ class Menu extends Component {
 
                     <View style={styles.footer}>
                         {this.renderSection(require('../img/infoicon.png'), 'Hakkımızda')}
-                        {this.renderSection(require('../img/outicon.png'), 'Çıkış', () => { this.logOut(), Actions.loginScreen() })}
+                        {this.renderSection(require('../img/outicon.png'), 'Çıkış', () => { this.logOut()})}
                     </View>
                 </View>
             </View>
