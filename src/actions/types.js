@@ -16,3 +16,5 @@ export const REZRV_INPUT_CHANGE = 'rezervation_input_change';
 export const REZRV_CREATE_REQUEST = 'rezervation_create_change';
 export const PARK_LIST_SUCCESS = 'park_list_success';
 export const CAR_LIST_SUCCESS = 'car_list_success';
+
+export const UPDATE_CAR_REQUEST = 'update_car_request';

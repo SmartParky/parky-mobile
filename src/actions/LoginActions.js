@@ -26,7 +26,7 @@ export const loginUser = ({ email, password }) => {
         .accept("application/json")
         .send(data)
         .then((res) => setAuthInformations( dispatch, res.body.auth_token, res.body.user_id),
-           Actions.rezervationCreatePage())
+           Actions.CarInfoScrn())
         .catch((err) => console.log(err))           
     };  
 };

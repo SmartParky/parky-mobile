@@ -1,9 +1,9 @@
-import { CAR_INPUT_CHANGE, CAR_CREATE_REQUEST } from '../actions/types';
+import { CAR_INPUT_CHANGE, CAR_CREATE_REQUEST, UPDATE_CAR_REQUEST } from '../actions/types';
 
 INITIAL_STATE = {
     plate: '',
     carColor: '',
-    carType: ''
+    carType: '',
 }
 
 export default ( state= INITIAL_STATE, action ) => {
@@ -11,7 +11,9 @@ export default ( state= INITIAL_STATE, action ) => {
             case CAR_INPUT_CHANGE:
                 return { ...state, [action.payload.props] : action.payload.value };
             case CAR_CREATE_REQUEST:
-                return { ...state };       
+                return { ...state };
+            case UPDATE_CAR_REQUEST:
+            return{ ...state }       
             default:
                 return state;
         }

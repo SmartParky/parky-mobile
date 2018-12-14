@@ -1,4 +1,4 @@
-import { AsyncStorage } from 'react-native';
+import { AsyncStorage, Alert} from 'react-native';
 const request = require("superagent");
 // Api
 const url = "http://10.0.3.2:8000";
@@ -37,8 +37,12 @@ async function retrieveUser(onComplete) {
 
     req.end((err, res) => {
         if (err || res.statusCode !== HTTP_200_OK) {
+            console.log(res.body);
+            
             Alert.alert("An unexpected error has occurred and try again later.");
         } else {
+            console.log(res.body);
+            
             onComplete(res.body);
         }
     });
