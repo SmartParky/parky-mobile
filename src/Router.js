@@ -72,8 +72,8 @@ export default class RouterComponent extends Component {
                         <Scene
                             navigationBarStyle={{ height: 85 }}
                             sceneStyle={{ marginTop: 85 }}
-                            key="HomepageScrn" component={Homepage}
-
+                            key="HomepageScrn" component={Homepage} 
+                            
                         />
                     </Drawer> 
                 </Scene>
