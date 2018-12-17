@@ -1,6 +1,15 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
+    ext {
+        buildToolsVersion = "27.0.3"
+        minSdkVersion = 16
+        compileSdkVersion = 27
+        targetSdkVersion = 26
+        supportLibVersion = "27.1.1"
+        googlePlayServicesVersion = "11.6.2"
+        androidMapsUtilsVersion = "0.5+"
+    }
     repositories {
         jcenter()
     }
@@ -20,5 +29,9 @@ allprojects {
             // All of React Native (JS, Obj-C sources, Android binaries) is installed from npm
             url "$rootDir/../node_modules/react-native/android"
         }
+        maven {
+            url "https://maven.google.com"
+        }
+
     }
 }

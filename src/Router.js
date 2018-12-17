@@ -11,6 +11,7 @@ import CreateRezervation from './components/CreateRezervation';
 import Menu from './components/Menu';
 import CarInfo from './components/CarInfo';
 import PastRezervation from './components/PastRezervation';
+import Homepage from './components/Homepage';
 import Header from './common/Header';
 
 const { width } = Dimensions.get('window');
@@ -67,6 +68,12 @@ export default class RouterComponent extends Component {
                             sceneStyle={{ marginTop: 85 }}
                             key="rezervationPastPage" component={PastRezervation}
     
+                        />
+                        <Scene
+                            navigationBarStyle={{ height: 85 }}
+                            sceneStyle={{ marginTop: 85 }}
+                            key="HomepageScrn" component={Homepage}
+
                         />
                     </Drawer> 
                 </Scene>
