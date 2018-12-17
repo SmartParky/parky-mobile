@@ -57,8 +57,8 @@ class Menu extends Component {
 
                     {this.renderSection(require('../img/hmpgicon.png'), 'Anasayfa', () => Actions.rezervationCreatePage())}
                     {this.renderSection(require('../img/prflicon.png'), 'Profil', () => Actions.ProfilScrn())}
-                    {this.renderSection(require('../img/rezicon.png'), 'Rezervasyonlarım')}
-                    {this.renderSection(require('../img/caricon.png'), 'Araç Bilgileri')}
+                    {this.renderSection(require('../img/rezicon.png'), 'Rezervasyonlarım', () => Actions.rezervationPastPage())}
+                    {this.renderSection(require('../img/caricon.png'), 'Araç Bilgileri', () => Actions.CarInfoScrn() )}
                     {this.renderSection(require('../img/favicon.png'), 'Favorilerim')}
 
                     <View style={styles.footer}>

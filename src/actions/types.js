@@ -18,3 +18,6 @@ export const PARK_LIST_SUCCESS = 'park_list_success';
 export const CAR_LIST_SUCCESS = 'car_list_success';
 
 export const UPDATE_CAR_REQUEST = 'update_car_request';
+
+export const REZERV_LIST_SUCCESS = 'rezerv_list_success';
+export const REZERV_DELETE_SUCCESS = 'rezerv_delete_success';
