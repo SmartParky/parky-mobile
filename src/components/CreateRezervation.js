@@ -28,7 +28,7 @@ class CreateRezervation extends Component {
         this.props.createRezervation({ otopark, arac, baslangicSaati, bitisSaati });
     }
 
-    render() {
+    render() {     
         return (
            <View>
                 <View style={styles.imgView}>

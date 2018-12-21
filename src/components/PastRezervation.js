@@ -13,7 +13,6 @@ class PastRezervation extends Component {
         this.props.ListRezervation();
     }
     clickRezervationDelete(rezervation) {
-        console.log(rezervation);
         const rezervation_id = rezervation.id  
         this.props.DeleteRezervation(rezervation_id)     
     }
