@@ -55,7 +55,7 @@ class Menu extends Component {
                         <Text style={styles.txt}>{this.state.user.first_name} {this.state.user.last_name}</Text>
                     </View>
 
-                    {this.renderSection(require('../img/hmpgicon.png'), 'Anasayfa', () => Actions.rezervationCreatePage())}
+                    {this.renderSection(require('../img/hmpgicon.png'), 'Anasayfa', () => Actions.HomepageScrn())}
                     {this.renderSection(require('../img/prflicon.png'), 'Profil', () => Actions.ProfilScrn())}
                     {this.renderSection(require('../img/rezicon.png'), 'Rezervasyonlarım', () => Actions.rezervationPastPage())}
                     {this.renderSection(require('../img/caricon.png'), 'Araç Bilgileri', () => Actions.CarInfoScrn() )}

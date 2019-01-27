@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import RNGooglePlaces from 'react-native-google-places';
 import MapView, { Marker } from 'react-native-maps';
 import MapViewDirections from 'react-native-maps-directions';
+import OneSignal from 'react-native-onesignal';
 
 import { ListPark } from '../actions';
 
@@ -27,6 +28,11 @@ class Homepage extends Component {
             latitude:0,
             longitude:0
         }
+    }
+    constructor(properties) {
+        super(properties);
+        OneSignal.init("a9207680-164d-4d47-aa7a-b76e30d9fc4e");
+
     }
 
     watchID = null
