@@ -41,8 +41,8 @@ export const DeleteRezervation = (rezervation_id) => {
             .end((error, response) => {
                 if (response) {
                     if (response.statusCode === HTTP_204_NO_CONTENT) {
-                        Alert.alert("Task deleted.");
-                        //window.location.reload()
+                        Alert.alert("Rezervasyon kaldırıldı.");
+                        Actions.HomepageScrn()
                     } else {
                         Alert.alert("An unexpected error has occurred and try again later.");
                     }

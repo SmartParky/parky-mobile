@@ -6,7 +6,8 @@ import {
     request,
     api_users_url,
     api_cities_url,
-    HTTP_200_OK } from './BaseActions';
+    HTTP_200_OK,
+    HTTP_201_CREATED } from './BaseActions';
 
 export const registerInputChange = ({ props, value }) => {
     return (dispatch) => {
@@ -34,10 +35,14 @@ export const createUser = ({ sehir, email, isim, soyisim, telNo, parola, parolat
         .type("application/json")
         .accept("application/json")
         .send(data)
-        .then((res) => console.log(res),
-            Actions.opening())
-        .catch((err) => console.log(err))
-        console.log(data)
+        .end((error, response) => {
+            if (error || response.statusCode !== HTTP_201_CREATED) {
+                Alert.alert('Lütfen bilgilerinizi doğru girip tekrar deneyiniz.');
+            } else {
+                Alert.alert('Kaydınız başarıyla alınmıştır');
+                Actions.openingScreen() 
+            }
+        })
     };    
 }
 

@@ -59,7 +59,7 @@ class Menu extends Component {
                     {this.renderSection(require('../img/prflicon.png'), 'Profil', () => Actions.ProfilScrn())}
                     {this.renderSection(require('../img/rezicon.png'), 'Rezervasyonlarım', () => Actions.rezervationPastPage())}
                     {this.renderSection(require('../img/caricon.png'), 'Araç Bilgileri', () => Actions.CarInfoScrn() )}
-                    {this.renderSection(require('../img/favicon.png'), 'Favorilerim')}
+                    {this.renderSection(require('../img/favicon.png'), 'Favorilerim', () => Actions.favoriParkScrn() )}
 
                     <View style={styles.footer}>
                         {this.renderSection(require('../img/infoicon.png'), 'Hakkımızda')}

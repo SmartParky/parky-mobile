@@ -34,7 +34,8 @@ export const createCar = ({ plate, carColor, carType }) => {
         .accept("application/json")
         .send(data)
         .then((res) => console.log(res),
-            Actions.opening())
+            Alert.alert("Araba başarıyla eklendi."),
+            Actions.HomepageScrn())
         .catch((err) => console.log(err))
     }
 }

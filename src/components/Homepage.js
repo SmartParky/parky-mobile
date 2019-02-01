@@ -1,42 +1,50 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity, Alert } from 'react-native';
+import { View, Text, TouchableOpacity, Alert, Dimensions, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
+import { Actions } from 'react-native-router-flux';
 
 import RNGooglePlaces from 'react-native-google-places';
 import MapView, { Marker } from 'react-native-maps';
 import MapViewDirections from 'react-native-maps-directions';
 import OneSignal from 'react-native-onesignal';
 
-import { ListPark } from '../actions';
+import { ListPark, ListRezervations } from '../actions';
+
+const { width, height } = Dimensions.get('window');
 
 class Homepage extends Component {
     state = {
         region: {
-            latitude: 41.0317508,
-            longitude: 40.50566976,
-            latitudeDelta: 10,
-            longitudeDelta:10,
+            latitude: 40.992799436600535,
+            longitude: 39.77554941012568,
+            latitudeDelta: 0.2,
+            longitudeDelta:0.2,
         },
         markerPosition: {
             latitude: 0,
             longitude: 0,
-            latitudeDelta: 10,
-            longitudeDelta: 10
+            latitudeDelta: 0.2,
+            longitudeDelta: 0.2
         },
         destination: {
             latitude:0,
             longitude:0
+        },
+        favoritePark: {
+            name: '',
+            id: ''
         }
     }
     constructor(properties) {
         super(properties);
         OneSignal.init("a9207680-164d-4d47-aa7a-b76e30d9fc4e");
-
+    
     }
 
     watchID = null
     componentDidMount(){
+        this.setState({ favoritePark: { name: this.props.max_park_name, id: this.props.max_park_id } })
         navigator.geolocation.getCurrentPosition((position) => {
             const lat = parseFloat(position.coords.latitude)
             const long = parseFloat(position.coords.longitude)
@@ -44,8 +52,8 @@ class Homepage extends Component {
             const initialRegion = {
                 latitude: lat,
                 longitude: long,
-                latitudeDelta: 10,
-                longitudeDelta: 10,
+                latitudeDelta: 0.2,
+                longitudeDelta: 0.2,
             }
 
             this.setState({region: initialRegion })
@@ -62,8 +70,8 @@ class Homepage extends Component {
             const lastRegion = {
                 latitude: lat,
                 longitude: long,
-                latitudeDelta: 10,
-                longitudeDelta: 10,
+                latitudeDelta: 0.15,
+                longitudeDelta: 0.15,
             }
             
         this.setState({region: lastRegion})
@@ -75,7 +83,18 @@ class Homepage extends Component {
         navigator.geolocation.clearWatch(this.watchID)
     }
     componentWillMount() {
-        this.props.ListPark();        
+        
+        this.props.ListPark();  
+        this.props.ListRezervations();
+        OneSignal.addEventListener('opened', this.onOpened); 
+    }
+    onOpened(openResult) {
+           
+        Actions.favoriParkScrn()
+        console.log('Message: ', openResult.notification.payload.body);
+        console.log('Data: ', openResult.notification.payload.additionalData);
+        console.log('isActive: ', openResult.notification.isAppInFocus);
+        console.log('openResult: ', openResult);
     }
     openSearchModal() {
         RNGooglePlaces.openAutocompleteModal()
@@ -86,22 +105,39 @@ class Homepage extends Component {
             })
             .catch(error => console.log(error.message));  // error is a Javascript Error object
     }
-  
+
     render() {      
         const GOOGLE_MAPS_APIKEY = 'AIzaSyAXoWKPTU-dgr9SzSFQoH_ts6oPEqW7F2I ';
         const parks = _.map(this.props.parks, park => {
         const park_array = park.coordinate.split(',')
         return( { latitude: parseFloat(park_array[0]), longitude: parseFloat(park_array[1]), id:park.id, name:park.name })
         })
+        
+        //console.log(this.props.max_park_name)
+        //console.log(this.props.max_park_id)
+        //console.log(this.state.favoritePark);
+        
         return(
+            
             <View style={{flex:1}}>
                 <TouchableOpacity
                     onPress={() => this.openSearchModal()}
                 >
-                    <Text>Pick a Place</Text>
+                    <View style={styles.section}>
+                        <View style={{
+                            flex: 1, justifyContent: 'space-between',
+                            flexDirection: 'row', alignItems: 'center'
+                        }}>
+
+                            <Text style={{ flex: 9, textAlign: 'center' }}>{'seçiniz'}</Text>
+                            {/*<Image source={img} />*/}
+
+                        </View>
+                    </View>
                 </TouchableOpacity>
                 <MapView
-                    style={{ flex: 1 }}
+                    style={{
+                        flex: 1}}
                     region={this.state.region}
                 >
                     {_.map(parks, park =>              
@@ -138,6 +174,18 @@ class Homepage extends Component {
     }
 }
 const styles = {
+    section: {
+        position: 'absolute',
+        zIndex: 1,
+        marginTop: 20,
+        backgroundColor: 'white',
+        borderRadius: 10,
+        width: width * 0.59,
+        height: height * 0.05,
+        alignItems: 'center',
+        paddingLeft: 10,
+        paddingRight: 10
+    },
     radius: {
         height: 50,
         width: 50,
@@ -163,10 +211,12 @@ const styles = {
     }
 }
 const mapToStateProps = ({ rezervationResponse }) => {
-    const  {parks} = rezervationResponse;
+    const { parks, max_park_name, max_park_id} = rezervationResponse;
 
     return {
         parks,
+        max_park_name,
+        max_park_id
     };
 }
-export default connect(mapToStateProps, { ListPark })(Homepage);
+export default connect(mapToStateProps, { ListPark, ListRezervations })(Homepage);

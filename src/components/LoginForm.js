@@ -32,7 +32,7 @@ class LoginForm extends Component {
               <Text style={styles.txtIn}>Yap!</Text>
           </View>
 
-          <View style={{ paddingHorizontal: 150, paddingTop: 30, flex: 1 }}>
+          <View style={{ paddingHorizontal: 130, paddingTop: 30, flex: 1 }}>
             <TextInput
             placeholder="E-Mail"
             placeholderTextColor={'#cccccc'}
@@ -52,11 +52,11 @@ class LoginForm extends Component {
             />
           </View>
           
-          <View style={{ paddingHorizontal: 180, paddingBottom: 200, flex: 1 }}>
+          <View style={{ paddingHorizontal: 150, paddingBottom: 150, flex: 1 }}>
             <Button onPress={this.clickLogin.bind(this)}> Sign In </Button>
           </View>
 
-          <View style= {styles.section}>
+          <View style= {{ flex: 1}}>
           <Text style={styles.txt}>Dont you have account yet?</Text>
           </View>
 
@@ -76,9 +76,10 @@ const styles = {
         flexDirection: 'row',
         justifyContent: 'space-between',
         marginTop: 20,
-        marginLeft: 20,
-        width: 350,
-        padding: 0,
+        marginLeft: 60,
+        width: width * 0.50,
+        height: height * 0.05,
+        //padding: 0,
     },
 
     inputStyle: {

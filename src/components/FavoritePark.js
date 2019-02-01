@@ -1,11 +1,11 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
-import { View, Image, Dimensions, Text, Picker } from 'react-native';
+import { View, Image, Dimensions, Text, Picker, TextInput } from 'react-native';
 import DatePicker from 'react-native-datepicker';
 import { connect } from 'react-redux';
 
 import Button from '../common/Button';
-import { createRezervation, rezInputChange, ListPark, ListCar } from '../actions';
+import { createRezervation, rezInputChange, ListPark, ListCar, createRezervationFav } from '../actions';
 
 const { width, height } = Dimensions.get('window');
 
@@ -13,8 +13,8 @@ class CreateRezervation extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            baslangicSaati: "2019-02-02 15:00",
-            bitisSaati: "2019-02-02 15:00"
+            baslangicSaati: "2019-02-01 12:00",
+            bitisSaati: "2019-02-01 13:00"
         }
     }
     componentWillMount() {
@@ -23,14 +23,14 @@ class CreateRezervation extends Component {
     }
 
     clickRezervationCreate() {
-        const { otopark, arac } = this.props;
+        const { max_park_id, arac } = this.props;
         const { baslangicSaati, bitisSaati } = this.state;
-        this.props.createRezervation({ otopark, arac, baslangicSaati, bitisSaati });
+        this.props.createRezervationFav({ max_park_id, arac, baslangicSaati, bitisSaati });
     }
 
-    render() {     
+    render() {
         return (
-           <View>
+            <View>
                 <View style={styles.imgView}>
                     <Image source={require('../img/circle.png')}
                         style={{ width: width * 1.15, height: height * 0.70 }} />
@@ -43,15 +43,9 @@ class CreateRezervation extends Component {
                 <View style={styles.container}>
                     <View style={{ paddingHorizontal: 128, paddingTop: 20, flex: 1 }}>
                         <View style={styles.PickerView}>
-                            <Picker
-                                style={styles.Picker}
-                                selectedValue={this.props.otopark}
-                                onValueChange={otopark => this.props.rezInputChange({ props: 'otopark', value: otopark })}
-                            >
-                                {_.map(this.props.parks, park =>
-                                    <Picker.Item key={park.id} label={park.name} value={park.id} />
-                                )}
-                            </Picker>
+                            <Text
+                                style={styles.txtname}>{this.props.max_park_name}</Text>
+        
                         </View>
                     </View>
 
@@ -74,7 +68,7 @@ class CreateRezervation extends Component {
                         mode="datetime"
                         placeholder="select date"
                         format="YYYY-MM-DD hh:mm"
-                        minimumDate="2019-02-02"
+                        minDate="2019-02-01"
                         confirmBtnText="Confirm"
                         cancelBtnText="Cancel"
                         customStyles={{
@@ -97,7 +91,7 @@ class CreateRezervation extends Component {
                         mode="datetime"
                         placeholder="select date"
                         format="YYYY-MM-DD hh:mm"
-                        minimumDate="2019-02-02"
+                        minDate="2019-02-01"
                         confirmBtnText="Confirm"
                         cancelBtnText="Cancel"
                         customStyles={{
@@ -150,6 +144,18 @@ const styles = {
         fontSize: 20,
         marginTop: 20
     },
+    txtname: {
+        width: width * 0.65,
+        height: height * 0.07,
+        backgroundColor: 'white',
+        elevation: 5,
+        textAlign: 'center',
+        borderRadius: 12,
+        elevation: 5,
+        fontSize: 20,
+        marginTop: 0,
+        color: "#000000"
+    },
     imgView: {
         position: 'absolute',
         zIndex: 1,
@@ -199,7 +205,9 @@ const mapToStateProps = ({ rezervationResponse }) => {
         baslangicSaati,
         bitisSaati,
         parks,
-        cars
+        cars,
+        max_park_name,
+        max_park_id
     } = rezervationResponse;
 
     return {
@@ -208,8 +216,10 @@ const mapToStateProps = ({ rezervationResponse }) => {
         baslangicSaati,
         bitisSaati,
         parks,
-        cars
+        cars,
+        max_park_name,
+        max_park_id
     };
 }
 
-export default connect(mapToStateProps, { createRezervation, rezInputChange, ListPark, ListCar })(CreateRezervation);
+export default connect(mapToStateProps, { createRezervation, rezInputChange, ListPark, ListCar, createRezervationFav })(CreateRezervation);

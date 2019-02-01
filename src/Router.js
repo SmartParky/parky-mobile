@@ -13,6 +13,7 @@ import CarInfo from './components/CarInfo';
 import PastRezervation from './components/PastRezervation';
 import Homepage from './components/Homepage';
 import Header from './common/Header';
+import FavoritePark from './components/FavoritePark';
 
 const { width } = Dimensions.get('window');
 
@@ -48,6 +49,11 @@ export default class RouterComponent extends Component {
                             sceneStyle={{ marginTop: 85 }}
                             key="carCreateScrn" component={CarCreate}
                          />
+                        <Scene
+                            navigationBarStyle={{ height: 85 }}
+                            sceneStyle={{ marginTop: 85 }}
+                            key="favoriParkScrn" component={FavoritePark}
+                        />
                         <Scene
                             navigationBarStyle={{ height: 85 }}
                             sceneStyle={{ marginTop: 85 }}

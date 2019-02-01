@@ -21,3 +21,4 @@ export const UPDATE_CAR_REQUEST = 'update_car_request';
 
 export const REZERV_LIST_SUCCESS = 'rezerv_list_success';
 export const REZERV_DELETE_SUCCESS = 'rezerv_delete_success';
+export const REZERV_LIST_SUCCESS_NOTFY = 'rezerv_list_success_notfy';
